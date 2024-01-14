@@ -1,21 +1,24 @@
-pipeline{
+pipeline {
     agent any
-    tools{
+    tools {
         maven 'M2_HOME'
     }
-    stages{
-        stage('sonarqube scan'){
-            steps{
-                withSonarQubeEnv('sonarserver'){
-                sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Mawu1982_week16-geo'
+    stages {
+        stage('sonarqube scan') {
+            steps {
+                script {
+                    // Use withSonarQubeEnv block correctly
+                    withSonarQubeEnv('sonarserver') {
+                        sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Mawu1982_week16-geo'
+                    }
+                }
             }
-    }            
-        stage('all maven commands'){
-            steps{
+        }
+        stage('all maven commands') {
+            steps {
                 sh 'mvn clean test compile install package'
             }
         }
-
-        } 
-    } 
+    }
 }
+I added the script block to encapsulate the withSona
