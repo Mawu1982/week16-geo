@@ -1,0 +1,10 @@
+pipeline{
+    agent none
+    stages{
+        stage{
+            steps('maven commands'){
+                sh 'mvn clean compile install package'
+            }
+        }
+    }
+}
