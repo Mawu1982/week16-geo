@@ -6,6 +6,7 @@ pipeline{
     stages{
         stage('sonarqube scan'){
             steps{
+                withsonarQubeEnv('sonarserver'){
                 sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Mawu1982_week16-geo'
             }
         }        
@@ -14,6 +15,6 @@ pipeline{
                 sh 'mvn clean test compile install package'
             }
         }
-        
+    } 
     }
 }
