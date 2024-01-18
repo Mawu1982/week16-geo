@@ -6,26 +6,22 @@ pipeline {
     stages {
         stage('sonarqube scan') {
             steps {
-                script {
-                    // Use withSonarQubeEnv block correctly
-                    withSonarQubeEnv('sonarserver'){
-                        sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Mawu1982_week16-geo'
-                      //sh 'mvn sonar:sonar'
-                    }
-                }
-            }
-        }
+                withSonarQubeEnv('sonarserver'){
+               sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Mawu1982_week16-geo'
+                //sh 'mvn sonar:sonar'
         stage('all maven commands') {
             steps {
-                sh 'mvn clean test compile install package'
+               sh 'mvn clean test compile install package'
             }
-        }
+        }      
         stage('upload artifact'){
             steps{
-
-                sh 'curl -uadmin:AP6jPWjdQd56g1G8hQSxnUFykAM -T\
+               sh 'curl -uadmin:AP6jPWjdQd56g1G8hQSxnUFykAM -T\
                  target/bio*.jar \
                   "http://54.197.121.69:8081/artifactory/geoapp/"'  
+            }
+        }
+        }
             }
         }
     }
