@@ -8,7 +8,7 @@ pipeline {
             steps {
                 script {
                     // Use withSonarQubeEnv block correctly
-                    withSonarQubeEnv('sonarserver') {
+                    withSonarQubeEnv('sonarserver'){
                         sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Mawu1982_week16-geo'
                       //sh 'mvn sonar:sonar'
                     }
@@ -22,8 +22,9 @@ pipeline {
         }
         stage('upload artifact'){
             steps{
+
                 sh 'curl -uadmin:AP6jPWjdQd56g1G8hQSxnUFykAM -T\
-                 target/bio*.jar\
+                 target/bio*.jar \
                   "http://54.197.121.69:8081/artifactory/geoapp/"'  
             }
         }
