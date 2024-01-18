@@ -10,7 +10,7 @@ pipeline {
                     // Use withSonarQubeEnv block correctly
                     withSonarQubeEnv('sonarserver') {
                       //  sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Mawu1982_week16-geo'
-                      sh 'mvn sonar:sonar'
+                      //sh 'mvn sonar:sonar'
                     }
                 }
             }
